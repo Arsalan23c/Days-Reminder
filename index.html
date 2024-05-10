@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    h1 {
+        margin-top: 50px;
+    }
+    #countdown {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+    <div class="outer-container">
+        <div class="inner-container">
+            <!-- <h1>Countdown Timer</h1> -->
+            <div class="container">
+                <h1>Project</h1>
+                <p>Counting down to June 12, 2024:</p>
+            </div>
+
+<div id="countdown"></div>
+            <div class="container">
+                <h1>Countdown Timer</h1>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // Function to calculate time left until a specific date
+    function timeUntil(date) {
+        const now = new Date();
+        const targetDate = new Date(date);
+        const timeLeft = targetDate - now;
+        const secondsLeft = Math.floor((timeLeft / 1000) % 60);
+        const minutesLeft = Math.floor((timeLeft / 1000 / 60) % 60);
+        const hoursLeft = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        return {
+            days: daysLeft,
+            hours: hoursLeft,
+            minutes: minutesLeft,
+            seconds: secondsLeft
+        };
+    }
+
+    // Display the countdown
+    function displayCountdown() {
+        const countdownElement = document.getElementById('countdown');
+        const timeLeft = timeUntil('2024-06-12');
+        countdownElement.innerHTML = `
+            <div>${timeLeft.days} days</div>
+            <div>${timeLeft.hours} hours</div>
+            <div>${timeLeft.minutes} minutes</div>
+            <div>${timeLeft.seconds} seconds</div>
+        `;
+    }
+
+    // Update the countdown every second
+    setInterval(displayCountdown, 1000);
+
+    // Initial call to display the countdown
+    displayCountdown();
+</script>
+</body>
+</html>
